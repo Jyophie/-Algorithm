@@ -31,3 +31,43 @@
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> Could you solve it without converting the integer to a string?</div>
+
+<br/>
+
+<p> 💟 나의 풀이 </p>
+
+```js
+var isPalindrome = function(x) {
+
+    var result = Number(String(x).split('').reverse().join(''))
+
+    if (result == x){
+        return true
+    } else {
+        return false
+    }
+    
+};
+```
+
+<br/>
+
+<p> 💟 다른 사람의 풀이 </p>
+
+```js
+var isPalindrome = function (x) {
+  if (x < 0 || (x % 10 == 0 && x != 0)) {
+    return false;
+  }
+  let t = 0;
+  while (x > t) {
+    t = t * 10 + (x % 10);
+    x = Math.floor(x / 10);
+  }
+  return t == x || x == Math.floor(t / 10);
+};
+```
+
+<p>string으로 변환하지 않고 수학으로만 푸는 풀이 방식.</p>
+
+<br/>
