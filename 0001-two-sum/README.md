@@ -36,3 +36,52 @@
 
 <p>&nbsp;</p>
 <strong>Follow-up:&nbsp;</strong>Can you come up with an algorithm that is less than <code>O(n<sup>2</sup>)</code><font face="monospace">&nbsp;</font>time complexity?</div>
+
+
+<br/>
+
+<p> 💟 나의 풀이 </p>
+
+```js
+var twoSum = function(nums, target) {
+    for(let i = 0; i < nums.length; i++){
+        for(let j = 1; j < nums.length; j++){
+            if(i < j){
+                if (nums[i] + nums[j] === target){
+                return [i, j];
+                }   
+            }
+        }
+    }
+};
+```
+
+<br/>
+
+<p> 💟 다른 사람의 풀이 </p>
+
+```js
+var twoSum = function(nums, target) {
+    let hashMap = new Map();
+
+    for(let i = 0; i < nums.length; i++) {
+        let neededNumber = target - nums[i];
+
+        if(hashMap.has(neededNumber)) {
+            return [i, hashMap.get(neededNumber)];
+        } 
+        hashMap.set(nums[i], i);
+
+    }
+};
+```
+<br/>
+
+<p> 🤔 접근 방식 </p>
+<p>해시맵? 키, 값 쌍의 집합을 의미</p>
+<p>1. 빈 해시맵 변수를 선언</p> 
+<p>2. for문으로 전체 배열 반복, 타겟에서 해당 숫자를 빼 필요한 나머지 숫자를 변수로 정의 </p>
+<p>3. 해시맵에 해당 나머지 숫자가 있는지 찾고, 있으면 [해당 숫자 인덱스, 찾는 나머지 숫자를 제공하는 배열 요소의 인덱스] 반환</p>
+<p>4. 충족하지 않으면 단순히 숫자와 인덱스를 해시맵에 저장.</p>
+
+<br/>
