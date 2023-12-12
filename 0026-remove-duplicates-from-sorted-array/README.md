@@ -50,3 +50,49 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 	<li><code>nums</code> is sorted in <strong>non-decreasing</strong> order.</li>
 </ul>
 </div>
+
+<br/>
+
+<p> 💟 나의 풀이 </p>
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    if (nums.length === 0) return 0;
+    
+    let i = 0;
+    for (let j = 1; j < nums.length; j++) {
+        if (nums[j] !== nums[i]) {
+            nums[++i] = nums[j];
+        }
+    }
+    return i + 1;
+};
+```
+
+<br/>
+
+<p> 💟 다른 사람의 풀이 </p>
+
+```js
+ var removeDuplicates = function(nums) {
+     let i=1;
+
+     while(i<nums.length){
+         if(nums[i-1] == nums[i]){
+             nums.splice(i, 1)
+         }else{
+             i++;}
+     }
+ };
+```
+
+<br/>
+
+<p> 🤔 접근 방식 </p>
+<p>splice로 해결하는 방법이 있지만, 시간 복잡도가 높아질 수 있음</p>
+
+<br/>
