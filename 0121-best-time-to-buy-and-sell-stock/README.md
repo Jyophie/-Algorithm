@@ -28,3 +28,62 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 	<li><code>0 &lt;= prices[i] &lt;= 10<sup>4</sup></code></li>
 </ul>
 </div>
+
+<br/>
+
+<p> 💟 나의 풀이 </p>
+
+```js
+// 에러 케이스 발생해서 해결 못했어요 ㅠㅠ
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    let profits = [];
+    let i = 0;
+    
+    for(let j = 1; j < prices.length; j++){
+        if (prices[i] < prices[j]) {
+            profits.push(prices[j] - prices[i]);
+        } else {
+            i++;
+        }
+    }
+    
+    return (profits.length !== 0) ? Math.max(...profits) : 0;
+};
+```
+
+<br/>
+
+<p> 💟 다른 사람의 풀이 </p>
+
+```js
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+   let buy = prices[0] 
+   let maxProfit = 0;
+   for(let i=0; i<prices.length; i++) {
+     if(prices[i]-buy > maxProfit) {
+         maxProfit = prices[i]-buy
+     }
+     if(prices[i] < buy) {
+         buy = prices[i]
+     }
+   }
+   return maxProfit
+};
+```
+
+<br/>
+
+<p> 🤔 접근 방식 </p>
+<p>maxProfit에 계속 새로운 이익 결과 값을 넣고 비교해서 도출하는 방식으로 접근</p>
+<p>저는 profits가 날 수 있는 케이스는 배열로 모두 계산하고 profits가 나는 케이스면 length가 0이 아니므로 Math.max로 최대 이익값 반환하게 한건데, 어디가 문제인걸까요?</p>
+
+<br/>
