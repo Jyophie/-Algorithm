@@ -39,3 +39,65 @@
 	<li>Can you do it without using any built-in function (i.e., like <code>__builtin_popcount</code> in C++)?</li>
 </ul>
 </div>
+<br/>
+
+<p> 💟 나의 풀이 </p>
+
+```js
+// 실패한 풀이 : n까지의 숫자를 2진수로 변환 -> 각 숫자를 split 하여 해당 문구에 1이 있는 만큼 cnt를 증가시키고 빈 배열에 추가하는 방식을 시도했는데 ㅠ 답이 틀리네요.
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var countBits = function(n) {
+    let arr = [];
+    let res = [];
+    let cnt = 0;
+    
+    for(let i = 0; i <= n; i++){
+        arr.push(i.toString(2));
+    }
+    for(let i = 0; i < arr.length; i++){
+        tmp = arr[i].split('');
+        for(let j = 0; j < tmp.length; j++){
+            if(tmp[j] === '1'){
+                cnt++;
+            }
+        }
+        res.push(cnt);
+    }
+    return res;
+};
+```
+
+<br/>
+
+<p> 💟 다른 사람의 풀이 </p>
+
+```js
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var countBits = function(n) {
+    var dp = new Array(n + 1).fill(0);
+    var sub = 1;
+
+    for (var i = 1; i <= n; i++) {
+        if (sub * 2 === i) {
+            sub = i;
+        }
+
+        dp[i] = dp[i - sub] + 1;
+    }
+
+    return dp;    
+};
+```
+
+<br/>
+
+<p> 🤔 접근 방식 </p>
+<p>Array.fill을 사용해서 dp로 푸는 방식으로 하니 간단하게 풀이가 되네요 🥹 </p>
+
+<br/>
