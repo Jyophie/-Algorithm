@@ -3,16 +3,22 @@
  * @return {number[]}
  */
 var countBits = function(n) {
-    var dp = new Array(n + 1).fill(0);
-    var sub = 1;
-
-    for (var i = 1; i <= n; i++) {
-        if (sub * 2 === i) {
-            sub = i;
-        }
-
-        dp[i] = dp[i - sub] + 1;
+    let arr = [];
+    let res = [];
+    
+    for(let i = 0; i <= n; i++){
+        arr.push(i.toString(2));
     }
-
-    return dp;    
+    for(let i = 0; i < arr.length; i++){
+        tmp = arr[i].split('');
+        let cnt = 0;
+        
+        for(let j = 0; j < tmp.length; j++){
+            if(tmp[j] === '1'){
+                cnt++;
+            }
+        }
+        res.push(cnt);
+    }
+    return res;
 };
