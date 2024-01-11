@@ -35,3 +35,83 @@
 	<li><code>s</code> consists of parentheses only <code>'()[]{}'</code>.</li>
 </ul>
 </div>
+
+
+<br/>
+
+# 💟 나의 풀이
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+var isValid = function(s) {
+    let arr = [];
+    
+    for(let str of s){
+        if (str === '(' || str === '[' || str === '{') {
+            arr.push(str);
+        } else {
+            if (arr.length === 0 || 
+                (str ===')' && arr[arr.length-1] !== '(') || 
+                (str ===']' && arr[arr.length-1] !== '[') || 
+                (str ==='}' && arr[arr.length-1] !== '{')) {
+                return false;
+            }
+            arr.pop();
+        }
+    }
+    return !arr.length;
+};
+```
+
+<br/>
+
+# 💟 다른 사람의 풀이
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+const pairs = {
+    "(": ")",
+    "[": "]",
+    "{": "}"
+}
+     
+var isValid = function(s) {
+    
+    if (s.length % 2 === 1) return false
+
+    if (s[0] === "]" || s[0] === ")" || s[0] === "}") return false
+ 
+    if (s[s.length - 1] === "[" || s[s.length - 1] === "(" || s[s.length - 1] === "{") return false
+    
+    let stack = []
+    
+    for(let i=0; i<s.length; i++) {
+        if(s[i] === "[" || s[i] === "(" || s[i] === "{") {
+            stack.push(s[i])
+        } else if (pairs[stack.pop()] !== s[i]) {
+            return false
+        }
+        
+    }
+    return stack.length === 0
+    
+};
+```
+
+<br/>
+
+# 🤔 접근 방식
+- 먼저 길이가 홀수일 경우 false 반환
+- 처음 요소가 닫는 괄호인 경우 false 반환
+- 마지막 요소가 여는 괄호인 경우 false 반환
+- 여는 괄호인 경우 스택에 밀어 넣고, 아니라면 닫는 괄호로 가정하고 일치 항목이 있는지 확인한다.
+
+<br/>
