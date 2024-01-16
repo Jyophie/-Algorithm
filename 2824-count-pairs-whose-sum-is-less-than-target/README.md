@@ -36,3 +36,44 @@ Note that (0, 3) is not counted since nums[0] + nums[3] is not strictly less tha
 	<li><code>-50 &lt;= nums[i], target &lt;= 50</code></li>
 </ul>
 </div>
+
+<br/>
+
+# 💟 나의 풀이 
+
+```js
+let count = 0;
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            if (nums[i] + nums[j] < target) {
+                count++;
+            }
+        }
+    }
+    return count;
+```
+
+<br/>
+
+# 💟 다른 사람의 풀이 
+
+```js
+var countPairs = function(nums, target) {
+    nums.sort((a, b) => a-b);
+    let count = 0;
+    let left = 0;
+    let right = nums.length-1;
+    while(left < right){ 
+        if(nums[left] + nums[right] < target){
+            count += right-left;
+            left++;
+        }
+        else{
+            right--;
+        }
+    }
+    return count;
+};
+```
+
+<br/>
