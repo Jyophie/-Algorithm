@@ -40,3 +40,32 @@ Total cost is 1.
 	<li><code>1 &lt;= position[i] &lt;= 10^9</code></li>
 </ul>
 </div>
+
+
+<br/>
+
+# 💟 다른 사람의 풀이 
+
+```js
+/**
+ * @param {number[]} position
+ * @return {number}
+ */
+
+var minCostToMoveChips = function(position) {
+    var odd = 0;
+    var even = 0;
+    position.map((x) => (x % 2 ? (odd += 1) : (even += 1)));
+    return Math.min(odd, even);
+};
+```
+
+<br/>
+
+# 🤔 접근 방식 
+- 생각보다 간단하게 생각하면 풀 수 있는 문제
+- 짝수와 홀수로 나누어 생각하고
+- map으로 순회하며 짝수일 경우 홀수 += 1, 아니면 짝수 += 1 (이동 코스트 추가)
+- 둘 중 최소 값 반환하면 최소 이동 비용 결과값 도출
+
+<br/>
