@@ -66,3 +66,28 @@
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
+
+
+처음 잘못 접근한 풀이 방식
+
+![image](https://github.com/Jyophie/-Algorithm/assets/133554119/ebec6773-011e-49c6-8054-5e3502ff1cc4)
+
+
+```
+// 비슷한 접근 방식의 정답 풀이
+
+function solution(numbers) {
+    var answer = Array(numbers.length);
+    var check = [0];
+    for (var i = 1; i < numbers.length; i++) {
+        while (check.length && numbers[check[check.length - 1]] < numbers[i]) {
+            answer[check.pop()] = numbers[i];
+        }
+        check.push(i);
+    }
+    while (check.length) {
+        answer[check.pop()] = -1;
+    }
+    return answer;
+}
+```
