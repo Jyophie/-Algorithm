@@ -73,3 +73,50 @@
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
+
+
+## 처음 시도한 풀이와 문제점
+
+```
+function solution(answers) {
+    let answer = [];
+    let tmp = [0,0,0];
+    let one = [1,2,3,4,5];
+    let two = [2,1,2,3,2,4,2,5];
+    let three = [3,3,1,1,2,2,4,4,5,5];
+    
+    for(let i = 0; i < answers.length; i++){
+        if(answers[i] === one[i]){
+            tmp[0]++;
+        } if(answers[i] === two[i]){
+            tmp[1]++;
+        } if(answers[i] === three[i]){
+            tmp[2]++;
+        }
+        continue;
+    }
+    
+    let max = Math.max(...tmp);
+    for(let i = 0; i < tmp.length; i++){
+        if(max === tmp[i]){
+            answer.push(i+1);
+        }
+    }
+    
+    return answer.length > 1 ? answer.sort((a,b) => a-b) : answer;
+}
+```
+
+## 문제점
+
+제공된 코드에서 여전히 문제가 있는 주된 이유는 각 수포자의 답안 패턴을 answers의 길이에 따라 반복시키지 않고 있기 때문입니다. 
+즉, one[i], two[i], three[i]와 같이 인덱스 i를 사용하여 직접 접근하는 방식은 one, two, three 배열의 길이를 초과하는 경우에 올바른 답안과 비교할 수 없습니다. 
+배열의 길이를 초과한 인덱스에 접근하려고 하면 undefined를 얻게 되므로, 예상치 못한 비교 결과를 초래합니다.
+
+예를 들어, answers 배열의 길이가 6인 경우, 1번 수포자의 답안 패턴은 [1,2,3,4,5,1]이 되어야 합니다. 
+하지만 주어진 코드는 one[5]의 값이 undefined이기 때문에, 6번째 문제에 대한 비교를 정확히 수행할 수 없습니다.
+
+이 문제를 해결하기 위해서는 각 수포자가 찍는 방식을 answers 배열의 길이에 맞추어 동적으로 반복시킬 필요가 있습니다. 
+이를 위해 각 수포자의 답안을 반복시키는 로직에 모듈로 연산(%)을 사용하여 현재 질문의 인덱스에 맞는 답안을 동적으로 가져오도록 수정해야 합니다.
+
+
