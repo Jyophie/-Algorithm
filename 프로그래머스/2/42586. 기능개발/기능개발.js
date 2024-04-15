@@ -1,3 +1,29 @@
+/*
+function solution(progresses, speeds) {
+    let answer = [];
+    let duration = [];
+    
+    for(let i = 0; i < progresses.length; i++){
+        duration.push(Math.floor((100 - progresses[i])/speeds[i]));
+    }
+    
+    let cnt = 1;
+    
+    for(let j = 1; j < duration.length; j++){
+        if(duration[j] > duration[j-1]){
+            answer.push(cnt);
+            cnt = 1;
+        } else {
+            cnt++;
+        }
+    }
+    
+    answer.push(cnt);
+    
+    return answer;
+}
+*/
+
 function solution(progresses, speeds) {
     let answer = [];
     let duration = [];
