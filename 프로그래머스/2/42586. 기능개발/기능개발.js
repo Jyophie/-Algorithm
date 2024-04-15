@@ -1,3 +1,34 @@
+/*
+function solution(progresses, speeds) {
+    let answer = [];
+    let duration = [];
+    
+    for(let i = 0; i < progresses.length; i++){
+        duration.push(Math.floor((100 - progresses[i])/speeds[i]));
+    }
+    
+    let cnt = 1;
+    
+    for(let j = 1; j < duration.length+1; j++){
+        if(duration[j] > duration[j-1]){
+            answer.push(cnt);
+        } else {
+            cnt++;
+            continue;
+        }
+    }
+    
+    return answer;
+}
+
+// 풀이 문제점
+// 전체 answer를 구하지 못하고 -1 갯수의 답까지만 구해짐
+
+// 위의 로직이 완성 기간을 계산하고는 있지만,
+// 이를 통해 각 배포마다 몇 개의 기능이 배포되는지 올바르게 관리하지 못하고 있음
+// 각 기능의 완성 시간을 기반으로 조건을 판단해야함
+*/
+
 function solution(progresses, speeds) {
     let answer = [];
 
