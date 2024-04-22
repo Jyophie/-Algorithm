@@ -1,3 +1,28 @@
+// 처음 시도한 풀이(시간 초과)
+function solution(n) {
+    let answer = 1;
+    
+    for(let i = 3; i <= n; i+=2){
+        let count = 0;
+        for(let j = 3; j <= i; j++){
+            if(i%j === 0){
+                count++;
+            }
+        }
+        if(count === 1){
+            answer++;
+        }
+    }
+        
+    return answer;
+}
+
+// n이 커질수록 반복 연산을 많이 수행하므로 비효율적
+// '에라토스테네스의 체' 알고리즘 사용 -> 시간 복잡도 O(nloglogn)
+// 1. 숫자 목록 초기화 (배열 만들고 모두 true로 초기화)
+// 2. 소수 판별하며, 배수가 되는 항목은 false로 표기
+// 3. true로 남아있는 소수 카운트
+
 function solution(n) {
     // 소수 판별 여부를 저장할 배열, 초기값은 모두 true
     let isPrime = Array(n+1).fill(true);
