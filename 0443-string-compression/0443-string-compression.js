@@ -2,6 +2,33 @@
  * @param {character[]} chars
  * @return {number}
  */
+// var compress = function(chars) {
+//     let answer = [];
+    
+//     if(chars.length === 1){
+//         return chars;
+//     }
+    
+//     answer.push(chars[0]);
+    
+//     for(let i = 1; i < chars.length; i++){
+//         let count = 1;
+//         let target = answer[answer.length-1];
+        
+//         if(chars[i] === target){
+//             count++;
+//         } else if(chars[i] !== target){
+//             if(count > 1){
+//                 answer.push(count);
+//             } else {
+//                 answer.push(chars[i]);
+//             }
+//         }
+//     }
+    
+//     return answer;
+// };
+
 var compress = function(chars) {
     let write = 0; // 쓰기 포인터
     let read = 0; // 읽기 포인터
